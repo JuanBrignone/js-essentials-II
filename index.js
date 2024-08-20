@@ -2,22 +2,67 @@
 
 // 01 - Function
 // getTotal(inventory: [{article: '🍔', price: 15, quantity: '1'}, {article: '🍟', price: 10, quantity: '2'}])
-// it should return the total. for the example data 👆 it should be: 35. (15x1 + 10x2)
+// it should return the total. for the example data 👆 it should be: 35. (15x1 + 10x2) 
+function getTotal(inventory){
+    let total = 0;
+    inventory.forEach(article => {
+        total += (article.price)*(article.quantity)
+    });
+    return "El total es: " + total;
+}
+getTotal([{article: '🍔', price: 15, quantity: '1'}, {article: '🍟', price: 10, quantity: '2'}])
+console.log(getTotal([{article: '🍔', price: 15, quantity: '1'}, {article: '🍟', price: 10, quantity: '2'}]));
 
 // 02 - Function
 // countBanana(inventory:['🥑','🍌','🥭', '🍌']})
+function countBanana(inventory){
+    let count = 0;
+    for(let i = 0; i < inventory.length; i ++){
+        if(inventory[i] === '🍌'){
+            count ++
+        }
+    }
+    return count;
+}
+console.log("Hay " + countBanana(['🥑','🍌','🥭', '🍌']) +" bananas");
 
 // 03- Function
 //   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 //   console.log(filterEvenNumbers(numbers)); // Output: [2, 4, 6, 8, 10]
+function filterEvenNumbers(numbers){
+    let numbers2 = [];
+    for(let i = 0; i < numbers.length; i ++){
+        if(numbers[i] % 2 === 0){
+            numbers2.push(numbers[i]);
+        }
+    }
+    return numbers2;
+}
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(filterEvenNumbers(numbers));
 
 // 04 - function
 //   const numbers = [1, 2, 3, 4, 5];
 //   console.log(squareNumbers(numbers)); // Output: [1, 4, 9, 16, 25]
+function squareNumbers(numbers1){
+    let numbers2 = [];
+    for(let i = 0; i < numbers1.length; i ++){
+        numbers2.push(numbers1[i]**2);
+    }
+    return numbers2;
+}
+const numbers1 = [1, 2, 3, 4, 5];
+console.log(squareNumbers(numbers1));
 
 // 05 - function
 //   const numbers = [1, 2, 3, 4, 5];
 //   console.log(findMax(numbers)); // Output: 5
+function findMax(numbers2){
+    const max=Math.max(...numbers2);
+    return max;
+}
+const numbers2 = [1, 2, 3, 4, 5];
+console.log(findMax(numbers2));
 
 // 06 - function
 //   const people = [
@@ -27,6 +72,21 @@
 //     { name: "El Chengue", age: 49 }
 //   ];
 //   console.log(calculateAverageAge(people)); // Output: 32.5
+function calculateAverageAge(people){
+    let totalAge = 0;
+    for(let i = 0; i < people.length; i ++){
+        totalAge +=people[i].age;
+    }
+    let average = totalAge / people.length;
+    return average;
+}
+const people = [
+    { name: "Juan", age: 25 },
+    { name: "Carla", age: 30 },
+    { name: "Lucia", age: 35 },
+    { name: "El Chengue", age: 49 }
+    ];
+console.log(calculateAverageAge(people));
 
 // 07 - function  combinedHobbies(persons)
 // Function to combine hobbies from all persons
@@ -58,6 +118,33 @@
 //   'photography 📸', 'traveling ✈️', 'swimming 🏊‍♂️',
 //   'dancing 💃', 'singing 🎤', 'running 🏃‍♀️'
 // ]
+function combinedHobbies(persons) {
+    let allHobbies = [];
+    persons.forEach(person => {
+        allHobbies = allHobbies.concat(person.hobbies);
+    });
+    return allHobbies;
+}
+const persons = [
+     {
+       name: 'Paula',
+       hobbies: ['reading 📚', 'gardening 🌱', 'painting 🎨']
+    },
+    {
+       name: 'Martin',
+       hobbies: ['cycling 🚴', 'cooking 🍳', 'hiking 🥾']
+     },
+     {
+      name: 'Juan',
+       hobbies: ['photography 📸', 'traveling ✈️', 'swimming 🏊‍♂️']
+    },
+   {
+       name: 'Veronica',
+       hobbies: ['dancing 💃', 'singing 🎤', 'running 🏃‍♀️']
+     }
+];
+console.log(combinedHobbies(persons));
+
 
 // 08 - function printChemicalInfo(chemicals)
 // const chemicals = [
@@ -130,14 +217,22 @@
 // | Solubility: Miscible with water                      |
 // +-------------------------------------------------------+
 
+
 // 09 - function getGetUniqueGuestList(guestList)
 // const guestList = ['Alice 🙆🏻‍♀️', 'Bob 🙍🏼', 'Charlie 👨🏼‍🚀', 'Alice 🙆🏻‍♀️', 'David 🤵🏿‍♂️'];
 
 // Remove duplicated elements from the  guests list
 // Expected getGetUniqueGuestList(guestList)) ['Alice 🙆🏻‍♀️', 'Bob 🙍🏼', 'Charlie 👨🏼‍🚀', 'David 🤵🏿‍♂️']
+function getGetUniqueGuestList(guestList){
+    const Norep = new Set(guestList);
+    return Norep;
+}
+const guestList = ['Alice 🙆🏻‍♀️', 'Bob 🙍🏼', 'Charlie 👨🏼‍🚀', 'Alice 🙆🏻‍♀️', 'David 🤵🏿‍♂️'];
+console.log(getGetUniqueGuestList(guestList));
 
 // 10 - function showUserProfiles(user)
 // User data
+//
 
 // const user1 = {
 //     id: 1,
@@ -160,6 +255,9 @@
 
 //   showUserProfile(user1); // Expected output: 'carol.smith, carol.smith77'
 //   showUserProfile(user2); // Expected output: 'jane.smith@example.com'
+function showUserProfile(user){
+    
+}
 
 // 11 - function sortLeaderBoardByScoreDesc(leaderBoard)
 // The function should sort the players by score as it's displayed on the expected output
