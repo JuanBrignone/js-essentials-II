@@ -217,6 +217,54 @@ console.log(combinedHobbies(persons));
 // | Solubility: Miscible with water                      |
 // +-------------------------------------------------------+
 
+function printChemicalInfo(chemicals){
+    chemicals.forEach(chemical => {
+        console.log('+-------------------------------------------------------+');
+        console.log(`| Compound ID: ${chemical.compoundId.padEnd(48)}|`);
+        console.log(`| Name: ${chemical.name.padEnd(52)}|`);
+        console.log(`| Formula: ${chemical.formula.padEnd(50)}|`);
+        console.log(`| Description: ${chemical.description.padEnd(46)}|`);
+        console.log(`| Molecular Weight: ${chemical.molecularWeight.padEnd(39)}|`);
+        console.log(`| Melting Point: ${chemical.meltingPoint.padEnd(42)}|`);
+        console.log(`| Boiling Point: ${chemical.boilingPoint.padEnd(42)}|`);
+        console.log(`| Solubility: ${chemical.solubility.padEnd(45)}|`);
+        console.log('+-------------------------------------------------------+');
+        console.log('');
+    });
+}
+ const chemicals = [
+     {
+       compoundId: 'CHEM001',
+       name: 'Aspirin',
+       formula: 'C9H8O4',
+       description: 'Aspirin is a common medication used to reduce pain and inflammation.',
+       molecularWeight: '180.16 g/mol',
+       meltingPoint: '135°C',
+       boilingPoint: '140°C',
+      solubility: 'Slightly soluble in water'
+     },
+     {
+       compoundId: 'CHEM002',
+       name: 'Caffeine',
+       formula: 'C8H10N4O2',
+       description: 'Caffeine is a stimulant found in coffee, tea, and various energy drinks.',
+       molecularWeight: '194.19 g/mol',
+       meltingPoint: '238°C',
+       boilingPoint: '178°C',
+       solubility: 'Freely soluble in water'
+     },
+     {
+       compoundId: 'CHEM003',
+       name: 'Ethanol',
+       formula: 'C2H6O',
+       description: 'Ethanol, also known as alcohol, is commonly used as a solvent and in alcoholic beverages.',
+       molecularWeight: '46.07 g/mol',
+       meltingPoint: '-114.1°C',
+       boilingPoint: '78.37°C',
+       solubility: 'Miscible with water'
+     }
+   ];
+printChemicalInfo(chemicals);
 
 // 09 - function getGetUniqueGuestList(guestList)
 // const guestList = ['Alice 🙆🏻‍♀️', 'Bob 🙍🏼', 'Charlie 👨🏼‍🚀', 'Alice 🙆🏻‍♀️', 'David 🤵🏿‍♂️'];
@@ -257,7 +305,35 @@ console.log(getGetUniqueGuestList(guestList));
 //   showUserProfile(user2); // Expected output: 'jane.smith@example.com'
 function showUserProfile(user){
     
+    const { profile } = user;
+
+    if (profile.social) {
+        
+        return Object.values(profile.social).join(', ');
+    } 
+
+    return profile.email || '';
 }
+
+ const user1 = {
+     id: 1,
+     name: 'Carol Smith',
+     profile: {
+       social: {
+          twitter: 'carol.smith',
+          facebook: 'carol.smith77'
+      }
+    }
+};
+ const user2 = {
+     id: 2,
+     name: 'Jane Smith',
+     profile: {
+            email: 'jane.smith@example.com',
+        }
+};
+console.log(showUserProfile(user1)); // Expected output: 'carol.smith, carol.smith77'
+console.log(showUserProfile(user2)); // Expected output: 'jane.smith@example.com'
 
 // 11 - function sortLeaderBoardByScoreDesc(leaderBoard)
 // The function should sort the players by score as it's displayed on the expected output
@@ -287,6 +363,26 @@ function showUserProfile(user){
 //   { player: 'Bobby', score: 11 }
 // ]
 
+function sortLeaderBoardByScoreDesc(leaderBoard){
+    leaderBoard.sort((a, b) => b.score - a.score);
+    leaderBoard.forEach((player, index) => {
+        console.log(`${player.player}: ${player.score}`);
+    });
+}
+ const leaderBoard = [
+   { player: "John", score: 80 },
+   { player: "Charlie", score: 20 },
+   { player: "Julio", score: 50 },
+   { player: "Bob", score: 80 },
+   { player: "Bobby", score: 11 },
+   { player: "Tommy", score: 43 },
+   { player: "Eric", score: 99 },
+   { player: "Alice", score: 100 },
+   { player: "Alfred", score: 30 },
+ ];
+ sortLeaderBoardByScoreDesc(leaderBoard);
+
+
 // 12 - function
 
 // function getTopFiveWorstPlayers(leaderBoard)
@@ -301,6 +397,16 @@ function showUserProfile(user){
 // ]
 
 // NOTE: ⚠️ original array shouldn't be modified. or we are missing players.
+
+function getGetUniqueGuestList(leaderBoard){
+    leaderBoard.sort((a, b) => a.score - b.score);
+    const worst = leaderBoard.slice(0,5);
+    worst.forEach((player, index) => {
+        console.log(`${player.player}: ${player.score}`);
+    });
+}
+console.log("PEORES 5: ")
+getGetUniqueGuestList(leaderBoard);
 
 // 13 - function safeCopy()
 // const companyHierarchy = {
